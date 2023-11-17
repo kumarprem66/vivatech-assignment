@@ -131,7 +131,10 @@ Register a new user, login, and test OTP generation and validation features.
 /api/user-profile - User profile endpoint.
 ## Screenshots
 Include screenshots or GIFs showcasing the application's features.
-![register](https://github.com/kumarprem66/vivatech-assignment/blob/main/vivatech-register.jpg)
+
+![register](https://github.com/kumarprem66/vivatech-assignment/blob/main/vivatech-regis.jpg)
+
 ![register](https://github.com/kumarprem66/vivatech-assignment/blob/main/vivatech-login.jpg)
+
 Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests.
