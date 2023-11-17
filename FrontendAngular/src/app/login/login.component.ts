@@ -36,25 +36,7 @@ export class LoginComponent implements OnInit{
       const formData = this.loginForm.value;
 
       // Send a GET request to the JSON Server to fetch user data
-      this.http.get<Users[]>('http://localhost:3000/user').subscribe(
-        (users: Users[]) => {
-          const user = users.find(
-            (u) => u.username === formData.username && u.password === formData.password
-          );
-          if (user) {
-            // console.log('Authentication successful');
-            alert('Authentication successful')
-            // Implement session management or token handling here
-            this.loginForm.reset();
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            
-            this.router.navigate(['/dashboard']);
-          } else {
-            alert('Authentication failed')
-            // console.log('Authentication failed');
-          }
-        }
-      );
+      
     }
   }
 }
