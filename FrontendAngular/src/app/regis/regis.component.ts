@@ -1,7 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http'
-
+import { Router } from '@angular/router';
+import { Users,UserLogin } from '../data-type';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -12,8 +14,9 @@ import {HttpClient} from '@angular/common/http'
 export class RegisComponent implements OnInit{
 
   registrationForm: FormGroup;
+  
 
-  constructor(private fb:FormBuilder,private http: HttpClient){
+  constructor(private fb:FormBuilder,private http: HttpClient,private router:Router,private userservice:UserService){
     this.registrationForm = this.fb.group({
       username:['',[Validators.required]],
       password:['',[Validators.required]],
@@ -28,12 +31,21 @@ export class RegisComponent implements OnInit{
   onSubmit(){
     if(this.registrationForm.valid){
       const formData = this.registrationForm.value;
-
-      this.http.post('http://localhost:8088/otp/register',formData).subscribe((response)=>{
-        alert("Registration complted"+response)
-        // console.log("Registration complted",response)
-        this.registrationForm.reset();
-      })
+      this.userservice.register(formData).
+      // this.http.post('http://localhost:8088/otp/register',formData)
+      subscribe(
+        (response) => {
+        
+          alert('Registration success.');
+          // Redirect to login page upon successful registration
+          // this.router.navigate(['/login']);
+        },
+        (error) => {
+          alert('Registration failed. Please try again.');
+          console.error('Registration failed', error);
+          // Handle error, e.g., display a message to the user
+        }
+      )
     }
   }
 

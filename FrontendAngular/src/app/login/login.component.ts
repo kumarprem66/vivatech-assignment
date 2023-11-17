@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Users } from '../data-type';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,12 @@ export class LoginComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private http:HttpClient,
-    private router:Router
+    private router:Router,
+    private userService:UserService
     
     ){
     this.loginForm = this.fb.group({
-      username: ['',Validators.required],
+      email: ['',Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -35,8 +37,22 @@ export class LoginComponent implements OnInit{
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
 
-      // Send a GET request to the JSON Server to fetch user data
+    
       
+      // this.http.post<any>('http://localhost:8088/otp/signIn', formData)
+      this.userService.login(formData)
+      .subscribe(
+        (response) => {
+          alert('Login successful: ' + response);
+          // Redirect to another page upon successful login
+          // this.router.navigate(['/dashboard']);
+        },
+        (error) => {
+          alert('Login failed. Please check your username and password.');
+          console.error('Login failed', error);
+          // Handle error, e.g., display a message to the user
+        }
+      );
     }
   }
 }
