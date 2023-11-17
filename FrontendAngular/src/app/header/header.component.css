@@ -1,0 +1,9 @@
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+header a{
+    margin-right: 20px;
+}

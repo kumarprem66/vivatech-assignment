@@ -1,0 +1,16 @@
+{
+  "user": [
+    {
+      "username": "admin",
+      "password": "12345678",
+      "email": "premstart10@gmail.com",
+      "id": 1
+    },
+    {
+      "username": "masai",
+      "password": "12345678",
+      "email": "premmkd123@gmail.com",
+      "id": 2
+    }
+  ]
+}
